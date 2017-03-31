@@ -1,12 +1,28 @@
 <template>
   <div id="app">
-    <list></list>
+    <list :page="page"></list>
     <a class="button" v-on:click="next">GO NEXT</a>
   </div>
 </template>
 
 <script>
+  import List from '../components/List.vue'
 
+  export default{
+    data(){
+      return {
+        page: 1
+      }
+    },
+    components: {
+      'list': List
+    },
+    methods: {
+      next: function () {
+        this.page++;
+      }
+    }
+  }
 </script>
 
 <style scoped>
