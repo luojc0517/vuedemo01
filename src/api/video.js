@@ -7,7 +7,7 @@ import reqwest from 'reqwest'
 const url = 'https://v.html5.qq.com/api/carddatanew?card_id=282&ver=1&network=wifi&_t=1490935456992&ch=881123';
 
 export default {
-  getList(callback){
+  getList(cardId, callback){
     // reqwest({
     //   url: url,
     //   headers: {
@@ -23,12 +23,12 @@ export default {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         var dataJson = JSON.parse(this.responseText);
-        console.log(dataJson.data);
+        dataJson.data.shift();
         callback(null, dataJson);
       }
     });
 
-    xhr.open("GET", "https://v.html5.qq.com/api/carddatanew?card_id=282&ver=1&network=wifi&_t=1490935456992&ch=881123");
+    xhr.open("GET", "https://v.html5.qq.com/api/carddatanew?card_id=" + cardId + "&ver=1&network=wifi&_t=1490935456992&ch=881123");
     xhr.send(data);
   }
 }
