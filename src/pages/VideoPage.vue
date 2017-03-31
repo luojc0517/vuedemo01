@@ -37,22 +37,22 @@
     methods: {
       onNavClick: function (items, index) {
         console.log(items[index].sId + " " + items[index].sName);
+        var activeId = items[index].sId;
         // 新增元素
         if (this.idList.indexOf(items[index].sId) == -1) {
           this.idList.push(items[index].sId);
           this.list.push({id: items[index].sId, active: true});
-          console.log(this.list);
         }
         // 先全部置为false
         this.list.forEach(function (item) {
-          item.active = false;
+          if (item.id == activeId) {
+            item.active = true;
+          } else {
+            item.active = false;
+          }
+
         });
 
-        this.list[index].active = true;
-
-        this.list.forEach(function (item) {
-          console.log("id : " + item.id + " ,active : " + item.active);
-        });
       }
     }
   }
